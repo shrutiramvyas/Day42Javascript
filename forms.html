@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="forms.css">
+  </head>
+  <body>
+    <form>
+      <header class="headerContainer"><h1>Html 5 form Input</h1></header>
+      <div>
+        <label for="text">text input type for Name</label>
+        <input placeholder="Enter some text" type="text" id="text" name="text" /><p id="values"></p>
+        <error-output class="text-error" for="text"></error-output>
+      </div>
+      <div>
+        <label for="text">passWord input Type:</label>
+        <input type="password" id="pwd" name="pwd" />
+      </div>
+      <div>
+        <label for="email">Email input Type:</label>
+        <input type="email" id="email" name="email" onclick="alert('Click')"/>
+      </div>
+      <div>
+        <label for="url">Url input Type:</label>
+        <input type="url" id="url" name="url" />
+      </div>
+      <div>
+        <label for="tel">Telephone input Type:</label>
+        <input type="tel" id="tel" name="tel" />
+        <error-output class="tel-error" for="tel"></error-output>
+      </div>
+      <div>
+        <label for="search">Search input Type:</label>
+        <input type="search" id="search" name="search" />
+      </div>
+      <div class="nativeDateTimePicker">
+        <label for="party">Choose your salary: </label>
+        <input type="datetime-local" id="party" name="bday">
+        <span class="validity"></span>
+      </div>
+      <div>
+        <label for="salary">Choose your salary:</label>
+        <input type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
+        <output class="salary-output" for="salary">400000</output>
+      </div>
+      <div>
+        <button onClick="countClick()" id="elem">Submit</button>
+      </div>
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input',function(){
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if(nameRegex.test(text.value))
+                textError.textContent = "";
+            else
+                textError.textContent = "Name is Incorrect";
+        });
+
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function(){
+            output.textContent = salary.value;
+        })
+
+        const tele = document.querySelector('#tel');
+        const telError = document.querySelector('.tel-error');
+        tele.addEventListener('input', function(){
+            let telRegex = RegExp('^[0-9]{10}$');
+            if(telRegex.test(tele.value))
+                telError.textContent = "";
+            else
+                telError.textContent = "Telephone number should be 10 digit";
+        });
+        function countClick(){
+            for(let i = 0; i <= 3; i++){
+                console.log("Click Time : " + i);
+            }
+        }
+        elem.onclick = function(){
+            alert("Thank You");
+        };
+        const input = document.querySelector('input');
+        const log = document.getElementById('values');
+        input.addEventListener('input', updateValue)
+
+        function updateValue(event){
+            log.textContent = event.target.value;
+            console.log(event);
+            console.log(event.target.value)
+                }
+    </script>
+  </body>
+</html>
